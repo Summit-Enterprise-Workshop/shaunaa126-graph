@@ -3,7 +3,8 @@ extend schema
     [
       "@key",
       "@tag",
-      "@shareable"
+      "@shareable",
+      "@authenticated"
     ]
   )
 
@@ -33,6 +34,11 @@ type Order @key(fields: "id") {
   product and which size/color/feature was bought
   """
   items: [ProductVariant!]!
+
+  """
+  Get a specific order by id. Meant to be used for a detailed view of an order
+  """
+  order(id: ID!): Order @authenticated
 }
 
 type User @key(fields: "id") {
